@@ -1,0 +1,5 @@
+#!/bin/sh
+
+set -euo pipefail
+
+mvnd clean compile quarkus:build -Dquickly
