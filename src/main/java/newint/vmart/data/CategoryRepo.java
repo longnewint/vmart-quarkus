@@ -3,7 +3,7 @@ package newint.vmart.data;
 import io.agroal.api.AgroalDataSource;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
-import newint.vmart.entity.ProductCategoryView;
+import newint.vmart.entity.ProductCategory;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,8 +18,8 @@ public class CategoryRepo {
 
   private static final String SQL = "SELECT * FROM get_product_view(?, ?)";
 
-  public ArrayList<ProductCategoryView> getProductByCategory(int storeId, int categoryId) {
-    ArrayList<ProductCategoryView> products = new ArrayList<>();
+  public ArrayList<ProductCategory> getProductByCategory(int storeId, int categoryId) {
+    ArrayList<ProductCategory> products = new ArrayList<>();
 
     try (Connection connection = this.pool.getConnection()) {
       try(PreparedStatement stm = connection.prepareStatement(SQL)) {
@@ -28,7 +28,7 @@ public class CategoryRepo {
 
         try(ResultSet rs = stm.executeQuery()) {
           while(rs.next()) {
-            products.add(new ProductCategoryView(
+            products.add(new ProductCategory(
               rs.getString(1),
               rs.getString(2),
               rs.getString(3),
