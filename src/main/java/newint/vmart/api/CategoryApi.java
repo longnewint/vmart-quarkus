@@ -16,6 +16,6 @@ public class CategoryApi {
 
   @GET
   public ArrayList<ProductCategory> get(@RestPath int categoryId) {
-    return repo.getProductByCategory(101, categoryId);
+    return repo.getProduct(101, categoryId);
   }
 }
