@@ -1,11 +1,13 @@
 package newint.vmart.entity;
 
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PositiveOrZero;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
+public record CartItem (
+  int productId,
 
-public class CartItem {
-  @NotBlank(message = "productId cannot be blank")
-  public String productId;
-  public int quantity;
-}
+  @PositiveOrZero(message = "quantity must be greater than 0")
+  @Max(value = 25, message = "quantity must be less than 25")
+  int quantity
+) {}
