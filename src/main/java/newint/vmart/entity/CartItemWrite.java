@@ -1,10 +1,9 @@
 package newint.vmart.entity;
 
 import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
 
-public record CartItem (
+public record CartItemWrite(
   int productId,
 
   @PositiveOrZero(message = "quantity must be greater than 0")
