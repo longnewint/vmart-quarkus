@@ -1,4 +1,4 @@
-package newint.vmart.api;
+package newint.vmart.api.validation;
 
 import jakarta.validation.ConstraintViolation;
 
@@ -9,12 +9,12 @@ public class Result {
   private String message;
   private boolean isSuccess;
 
-  Result(String message) {
+  public Result(String message) {
     this.isSuccess = true;
     this.message = message;
   }
 
-  Result(Set<? extends ConstraintViolation<?>> violations) {
+  public Result(Set<? extends ConstraintViolation<?>> violations) {
     this.isSuccess = false;
     this.message = violations.stream()
       .map(cv -> cv.getMessage())
