@@ -7,20 +7,24 @@ import jakarta.validation.Validator;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import newint.vmart.api.validation.Result;
+import newint.vmart.data.CartRepo;
+import newint.vmart.entity.CartItemRead;
 import newint.vmart.entity.CartItemWrite;
 import org.jboss.resteasy.reactive.RestPath;
 
+import java.util.List;
 import java.util.Set;
 
 @Path("/cart/{cartId}")
 public class CartApi {
-  @Inject
-  Validator validator;
+  @Inject CartRepo repo;
+
+  @Inject Validator validator;
 
   @GET
   @Produces(MediaType.APPLICATION_JSON)
-  public String get(@RestPath int cartId) {
-    return String.valueOf(cartId);
+  public List<CartItemRead> get(@RestPath int cartId) {
+    return repo.getCartItem(cartId);
   }
 
   @POST
