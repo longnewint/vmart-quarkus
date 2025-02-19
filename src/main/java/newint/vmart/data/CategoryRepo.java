@@ -3,6 +3,7 @@ package newint.vmart.data;
 import io.agroal.api.AgroalDataSource;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import newint.vmart.data.mapper.ProductCategoryMapper;
 import newint.vmart.entity.ProductCategory;
 
 import java.sql.Connection;
@@ -10,6 +11,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 @ApplicationScoped
 public class CategoryRepo {
@@ -18,8 +21,8 @@ public class CategoryRepo {
 
   private static final String SQL = "SELECT * FROM get_product_view(?, ?)";
 
-  public ArrayList<ProductCategory> getProduct(int storeId, int categoryId) {
-    ArrayList<ProductCategory> products = new ArrayList<>();
+  public List<ProductCategory> getProduct(int storeId, int categoryId) {
+    List<ProductCategory> products = Collections.emptyList();
 
     try (Connection connection = this.pool.getConnection()) {
       try(PreparedStatement stm = connection.prepareStatement(SQL)) {
@@ -27,16 +30,12 @@ public class CategoryRepo {
         stm.setInt(2, categoryId);
 
         try(ResultSet rs = stm.executeQuery()) {
-          while(rs.next()) {
-            products.add(new ProductCategory(
-              rs.getString(1),
-              rs.getString(2),
-              rs.getString(3),
-              rs.getString(4),
-              rs.getString(5),
-              rs.getString(6)));
-          }
+          products = new ArrayList<>();
+          var mapper = new ProductCategoryMapper();
 
+          while(rs.next()) {
+            products.add(mapper.map(rs));
+          }
           return products;
         }
       }

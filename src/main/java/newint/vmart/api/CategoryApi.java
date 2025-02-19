@@ -8,6 +8,7 @@ import newint.vmart.entity.ProductCategory;
 import org.jboss.resteasy.reactive.RestPath;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Path("/category/{categoryId}")
 public class CategoryApi {
@@ -15,7 +16,7 @@ public class CategoryApi {
   CategoryRepo repo;
 
   @GET
-  public ArrayList<ProductCategory> get(@RestPath int categoryId) {
+  public List<ProductCategory> get(@RestPath int categoryId) {
     return repo.getProduct(101, categoryId);
   }
 }
