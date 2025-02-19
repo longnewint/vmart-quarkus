@@ -3,6 +3,7 @@ package newint.vmart.data;
 import io.agroal.api.AgroalDataSource;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import newint.vmart.data.mapper.CartItemMapper;
 import newint.vmart.entity.CartItemRead;
 
 import java.sql.Connection;
@@ -20,7 +21,7 @@ public class CartRepo {
 
   private static final String READ_QUERY = "SELECT * FROM get_cart(?, ?)";
 
-  public List<CartItemRead> getCartItem(int cartId, int storeId) {
+  public List<CartItemRead> getCartItem(int cartId) {
     List<CartItemRead> cartItems = Collections.emptyList();
 
     try(Connection connection = this.pool.getConnection()) {
@@ -30,15 +31,10 @@ public class CartRepo {
 
         try(ResultSet rs = stm.executeQuery()) {
           cartItems = new ArrayList<>();
+          var mapper = new CartItemMapper();
 
           while (rs.next()) {
-            cartItems.add(new CartItemRead(
-              rs.getInt(1),
-              rs.getString(2),
-              rs.getFloat(3),
-              rs.getString(4),
-              rs.getInt(5)
-            ));
+            cartItems.add(mapper.map(rs));
           }
           return cartItems;
         }
