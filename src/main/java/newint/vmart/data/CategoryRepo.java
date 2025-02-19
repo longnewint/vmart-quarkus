@@ -18,7 +18,7 @@ public class CategoryRepo {
 
   private static final String SQL = "SELECT * FROM get_product_view(?, ?)";
 
-  public ArrayList<ProductCategory> getProductByCategory(int storeId, int categoryId) {
+  public ArrayList<ProductCategory> getProduct(int storeId, int categoryId) {
     ArrayList<ProductCategory> products = new ArrayList<>();
 
     try (Connection connection = this.pool.getConnection()) {

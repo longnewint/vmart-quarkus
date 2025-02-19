@@ -6,5 +6,4 @@ public record ProductCategory(
   String productName,
   String listPrice,
   String discountPrice,
-  String thumbnailUrl) {
-}
+  String thumbnailUrl) {}
