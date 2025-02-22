@@ -1,11 +1,12 @@
 package newint.vmart.entity;
 
 public record Product(
-  String productId,
+  int productId,
   String brand,
   String productName,
-  String listPrice,
-  String discountPrice,
+  float listPrice,
+  float discountPrice,
+  int packageSize,
   String url,
   String sku,
   String ingredients,
