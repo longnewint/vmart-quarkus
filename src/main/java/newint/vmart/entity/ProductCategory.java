@@ -1,9 +1,10 @@
 package newint.vmart.entity;
 
 public record ProductCategory(
-  String productId,
+  int productId,
   String brand,
   String productName,
-  String listPrice,
-  String discountPrice,
-  String thumbnailUrl) {}
+  float listPrice,
+  float discountPrice,
+  String thumbnailUrl
+) {}

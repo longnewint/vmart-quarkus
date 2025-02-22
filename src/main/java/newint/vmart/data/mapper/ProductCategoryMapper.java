@@ -8,11 +8,11 @@ import java.sql.SQLException;
 public class ProductCategoryMapper implements  ResultMapper<ProductCategory> {
   public ProductCategory map(final ResultSet rs) throws SQLException {
     return new ProductCategory(
-      rs.getString(1),
+      rs.getInt(1),
       rs.getString(2),
       rs.getString(3),
-      rs.getString(4),
-      rs.getString(5),
+      rs.getFloat(4),
+      rs.getFloat(5),
       rs.getString(6));
   }
 }
