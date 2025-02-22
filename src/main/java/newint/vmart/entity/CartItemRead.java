@@ -1,9 +1,9 @@
 package newint.vmart.entity;
 
 public record CartItemRead(
-  String productId,
+  int productId,
   String productName,
-  String listPrice,
+  float listPrice,
   String thumbnailUrl,
-  String quantity
+  int quantity
 ) {}
