@@ -2,4 +2,4 @@
 
 set -euo pipefail
 
-mvnd clean compile quarkus:build -Dquickly
+mvnd compile quarkus:build -Dquickly
