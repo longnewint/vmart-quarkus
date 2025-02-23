@@ -30,11 +30,11 @@ public class CartApi {
   @POST
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
-  public Result get(@RestPath int cartId, @Valid CartItemWrite item) {
+  public Result post(@RestPath int cartId, @Valid CartItemWrite item) {
     Set<ConstraintViolation<CartItemWrite>> violations = validator.validate(item);
 
     if (violations.isEmpty()) {
-      return new Result("Item added to cart!");
+      return new Result("Operation succeeds!");
     } else {
       return new Result(violations);
     }
