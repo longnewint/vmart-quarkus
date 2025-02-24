@@ -19,7 +19,7 @@ public class ProductRepo {
 
   private static final String SELECT_QUERY = "SELECT * FROM get_product_by_id(?, ?)";
 
-  public Optional<Product> getProduct(int productId, int storeId) {
+  public Optional<Product> getProduct(int storeId, int productId) {
     try(Connection connection = this.pool.getConnection()) {
       try(PreparedStatement stm = connection.prepareStatement(SELECT_QUERY)) {
         stm.setInt(1, storeId);
