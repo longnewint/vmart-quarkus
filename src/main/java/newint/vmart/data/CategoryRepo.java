@@ -19,7 +19,7 @@ public class CategoryRepo {
   @Inject
   AgroalDataSource pool;
 
-  private static final String SQL = "SELECT * FROM get_product_view(?, ?)";
+  private static final String SQL = "SELECT * FROM get_product(?, ?)";
 
   public List<ProductCategory> getProduct(int storeId, int categoryId) {
     List<ProductCategory> products = Collections.emptyList();
