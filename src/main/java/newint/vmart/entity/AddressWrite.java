@@ -1,13 +1,11 @@
 package newint.vmart.entity;
 
-public record Address(
-  int addressId,
+public record AddressWrite(
   String unitNumber,
   String streetNumber,
   String addressLine1,
   String addressLine2,
-  String postalCode,
   String city,
   String province,
-  boolean isDefault
+  String postalCode
 ) {}
