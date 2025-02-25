@@ -31,9 +31,9 @@ public class CurrentOrderMapper implements ResultMapper<CurrentOrder> {
     String streetNumber,
     String addressLine1,
     String addressLine2,
-    String postalCode,
     String city,
-    String province) {
+    String province,
+    String postalCode) {
     String tmpUnitNumber = !unitNumber.equals("none") ? unitNumber + ", " : "";
     String tmpAddressLine2 = !addressLine2.equals("none") ? addressLine2 + ", " : "";
 

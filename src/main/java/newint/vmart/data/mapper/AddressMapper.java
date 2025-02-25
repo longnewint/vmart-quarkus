@@ -1,13 +1,13 @@
 package newint.vmart.data.mapper;
 
-import newint.vmart.entity.Address;
+import newint.vmart.entity.AddressRead;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class AddressMapper implements ResultMapper<Address> {
-  public Address map(final ResultSet rs) throws SQLException {
-    return new Address(
+public class AddressMapper implements ResultMapper<AddressRead> {
+  public AddressRead map(final ResultSet rs) throws SQLException {
+    return new AddressRead(
       rs.getInt(1),
       rs.getString(2),
       rs.getString(3),
