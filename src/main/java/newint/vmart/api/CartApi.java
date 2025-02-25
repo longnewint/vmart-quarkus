@@ -34,6 +34,8 @@ public class CartApi {
     Set<ConstraintViolation<CartItemWrite>> violations = validator.validate(item);
 
     if (violations.isEmpty()) {
+      repo.addCartItem(cartId, item);
+
       return new Result("Operation succeeds!");
     } else {
       return new Result(violations);
