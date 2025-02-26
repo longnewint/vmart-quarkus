@@ -21,7 +21,7 @@ public class OrderRepo {
   private static final String SELECT_CURRENT_ORDER = "SELECT * FROM get_current_order(?)";
 
   public List<CurrentOrder> getCurrentOrder(int userId) {
-    try(Connection connection = pool.getConnection()) {
+    try(Connection connection = this.pool.getConnection()) {
       try(PreparedStatement ps = connection.prepareStatement(SELECT_CURRENT_ORDER)) {
         ps.setInt(1, userId);
 

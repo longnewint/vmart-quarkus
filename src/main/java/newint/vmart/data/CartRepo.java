@@ -44,7 +44,7 @@ public class CartRepo {
   }
 
   public boolean addCartItem(int cartId, CartItemWrite item) {
-    try(Connection connection = pool.getConnection()) {
+    try(Connection connection = this.pool.getConnection()) {
       try(CallableStatement stm = connection.prepareCall(INSERT_QUERY)) {
         stm.setInt(1, cartId);
         stm.setInt(2, item.productId());

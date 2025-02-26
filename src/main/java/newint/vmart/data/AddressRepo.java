@@ -46,7 +46,7 @@ public class AddressRepo {
   }
 
   public boolean addAddress(int userId, AddressWrite address) {
-    try(Connection connection = pool.getConnection()) {
+    try(Connection connection = this.pool.getConnection()) {
       try(CallableStatement stm = connection.prepareCall(INSERT_QUERY)) {
         stm.setInt(1, userId);
         stm.setBoolean(2, false);
@@ -72,7 +72,7 @@ public class AddressRepo {
   }
 
   public boolean deleteAddress(int userId, int addressId) {
-    try(Connection connection = pool.getConnection()) {
+    try(Connection connection = this.pool.getConnection()) {
       try(PreparedStatement stm = connection.prepareStatement(DELETE_QUERY)) {
         stm.setInt(1, addressId);
 
