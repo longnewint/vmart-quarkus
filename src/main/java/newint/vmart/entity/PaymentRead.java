@@ -1,6 +1,6 @@
 package newint.vmart.entity;
 
-public record Payment(
+public record PaymentRead(
   int paymentMethodId,
   int paymentType,
   String cardNumber,

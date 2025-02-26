@@ -1,13 +1,13 @@
 package newint.vmart.data.mapper;
 
-import newint.vmart.entity.Payment;
+import newint.vmart.entity.PaymentRead;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class PaymentMapper implements ResultMapper<Payment> {
-  public Payment map(final ResultSet rs) throws SQLException {
-    return new Payment(
+public class PaymentMapper implements ResultMapper<PaymentRead> {
+  public PaymentRead map(final ResultSet rs) throws SQLException {
+    return new PaymentRead(
       rs.getInt(1),
       rs.getInt(2),
       rs.getString(3),

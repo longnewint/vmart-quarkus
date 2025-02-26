@@ -3,9 +3,8 @@ package newint.vmart.data;
 import io.agroal.api.AgroalDataSource;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
-import newint.vmart.data.mapper.AddressMapper;
 import newint.vmart.data.mapper.PaymentMapper;
-import newint.vmart.entity.Payment;
+import newint.vmart.entity.PaymentRead;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -22,8 +21,8 @@ public class PaymentRepo {
 
   private static final String READ_QUERY = "SELECT * FROM get_payment(?)";
 
-  public List<Payment> getPayment(int userId) {
-    List<Payment> payments = Collections.emptyList();
+  public List<PaymentRead> getPayment(int userId) {
+    List<PaymentRead> payments = Collections.emptyList();
 
     try(Connection connection = this.pool.getConnection()) {
       try(PreparedStatement stm = connection.prepareStatement(READ_QUERY)) {
