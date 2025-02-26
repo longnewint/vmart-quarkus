@@ -21,6 +21,7 @@ public class AddressRepo {
 
   private static final String SELECT_QUERY = "SELECT * FROM get_address(?)";
   private static final String INSERT_QUERY = "CALL add_address(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+  private static final String DELETE_QUERY = "DELETE FROM address WHERE address_id = ?";
 
   public List<AddressRead> getAddress(int userId) {
     List<AddressRead> addresses = Collections.emptyList();
@@ -62,6 +63,18 @@ public class AddressRepo {
         stm.setString(7, address.city());
         stm.setString(8, address.province());
         stm.setString(9, address.postalCode());
+
+        return stm.execute();
+      }
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  public boolean deleteAddress(int userId, int addressId) {
+    try(Connection connection = pool.getConnection()) {
+      try(PreparedStatement stm = connection.prepareStatement(DELETE_QUERY)) {
+        stm.setInt(1, addressId);
 
         return stm.execute();
       }
