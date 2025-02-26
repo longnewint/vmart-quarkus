@@ -11,6 +11,7 @@ import newint.vmart.data.AddressRepo;
 import newint.vmart.entity.AddressRead;
 import newint.vmart.entity.AddressWrite;
 import org.jboss.resteasy.reactive.RestPath;
+import org.jboss.resteasy.reactive.RestQuery;
 
 import java.util.List;
 import java.util.Set;
@@ -40,5 +41,11 @@ public class DeliveryApi {
     }
     else
       return new Result(violations);
+  }
+
+  @DELETE
+  @Produces(MediaType.APPLICATION_JSON)
+  public void delete(@RestPath int userId, @RestQuery int addressId) {
+    repo.deleteAddress(userId, addressId);
   }
 }
