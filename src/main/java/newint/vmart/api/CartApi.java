@@ -36,7 +36,7 @@ public class CartApi {
     if (violations.isEmpty()) {
       repo.addCartItem(cartId, item);
 
-      return new Result("Operation succeeds!");
+      return new Result(true, "Operation succeeds!");
     } else {
       return new Result(violations);
     }

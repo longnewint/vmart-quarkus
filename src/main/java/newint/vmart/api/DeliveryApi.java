@@ -37,7 +37,7 @@ public class DeliveryApi {
     if(violations.isEmpty()) {
       repo.addAddress(userId, address);
 
-      return new Result("Operation successful!");
+      return new Result(true, "Operation successful!");
     }
     else
       return new Result(violations);
