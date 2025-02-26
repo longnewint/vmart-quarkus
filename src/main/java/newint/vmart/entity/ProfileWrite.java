@@ -1,4 +1,9 @@
 package newint.vmart.entity;
 
-public record ProfileWrite() {
-}
+import jakarta.validation.constraints.Email;
+
+public record ProfileWrite(
+  @Email
+  String email,
+  String name
+) {}
