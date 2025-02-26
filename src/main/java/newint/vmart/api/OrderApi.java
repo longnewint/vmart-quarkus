@@ -6,7 +6,7 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import newint.vmart.data.OrderRepo;
-import newint.vmart.entity.CurrentOrder;
+import newint.vmart.entity.CurrentOrderRead;
 import org.jboss.resteasy.reactive.RestPath;
 
 import java.util.List;
@@ -18,7 +18,7 @@ public class OrderApi {
   @GET
   @Path("/current/{userId}")
   @Produces(MediaType.APPLICATION_JSON)
-  public List<CurrentOrder> getCurrentOrder(@RestPath int userId) {
+  public List<CurrentOrderRead> getCurrentOrder(@RestPath int userId) {
     return repo.getCurrentOrder(userId);
   }
 }

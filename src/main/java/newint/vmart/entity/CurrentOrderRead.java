@@ -2,7 +2,7 @@ package newint.vmart.entity;
 
 import java.sql.Timestamp;
 
-public record CurrentOrder(
+public record CurrentOrderRead(
   int orderId,
   String storeName,
   int shippingMethodId,
