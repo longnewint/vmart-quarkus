@@ -6,11 +6,11 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Result {
-  private String message;
   private boolean isSuccess;
+  private String message;
 
-  public Result(String message) {
-    this.isSuccess = true;
+  public Result(boolean isSuccess, String message) {
+    this.isSuccess = isSuccess;
     this.message = message;
   }
 
