@@ -42,10 +42,10 @@ public class PaymentRepo {
     }
   }
 
-  public boolean addPayment(PaymentWrite payment) {
+  public boolean addPayment(int userId, PaymentWrite payment) {
     try(Connection connection = this.pool.getConnection()) {
       try(CallableStatement stm = connection.prepareCall(INSERT_QUERY)) {
-        stm.setInt(1, payment.customerId());
+        stm.setInt(1, userId);
         stm.setInt(2, payment.paymentTypeId());
         stm.setString(3, payment.cardNumber());
         stm.setString(4, payment.expMonth());
