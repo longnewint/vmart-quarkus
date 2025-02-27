@@ -27,6 +27,6 @@ public class OrderApi {
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
   public void post(@RestPath int userId, OrderWrite order) {
-    repo.addOrder(userId, order);
+    boolean isSuccessful = repo.addOrder(userId, order);
   }
 }
