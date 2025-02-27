@@ -46,6 +46,6 @@ public class DeliveryApi {
   @DELETE
   @Produces(MediaType.APPLICATION_JSON)
   public void delete(@RestPath int userId, @RestQuery int addressId) {
-    repo.deleteAddress(userId, addressId);
+    boolean isSuccessful = repo.deleteAddress(userId, addressId);
   }
 }
