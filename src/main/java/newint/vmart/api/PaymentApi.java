@@ -34,7 +34,7 @@ public class PaymentApi {
     Set<ConstraintViolation<PaymentWrite>> violations = validator.validate(payment);
 
     if(violations.isEmpty()) {
-      repo.addPayment(userId, payment);
+      boolean isSuccessful = repo.addPayment(userId, payment);
 
       return new Result(true, "Operation successful!");
     }
