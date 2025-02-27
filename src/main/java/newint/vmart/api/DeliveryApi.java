@@ -35,7 +35,7 @@ public class DeliveryApi {
     Set<ConstraintViolation<AddressWrite>> violations = validator.validate(address);
 
     if(violations.isEmpty()) {
-      repo.addAddress(userId, address);
+      boolean isSuccessful = repo.addAddress(userId, address);
 
       return new Result(true, "Operation successful!");
     }
