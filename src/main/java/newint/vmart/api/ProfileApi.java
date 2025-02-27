@@ -36,7 +36,7 @@ public class ProfileApi {
     Set<ConstraintViolation<ProfileWrite>> violations = validator.validate(profile);
 
     if(violations.isEmpty()) {
-      repo.updateProfile(userId, profile);
+      boolean isSuccessful = repo.updateProfile(userId, profile);
 
       return new Result(true, "Operation successful!");
     }
