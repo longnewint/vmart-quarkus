@@ -29,8 +29,8 @@ public class ProductRepo {
 
     try (Connection connection = this.pool.getConnection()) {
       try(PreparedStatement stm = connection.prepareStatement(SELECT_BY_CATEGORY_QUERY)) {
-        stm.setInt(1, storeId);
-        stm.setInt(2, categoryId);
+        stm.setInt(1, categoryId);
+        stm.setInt(2, storeId);
 
         try(ResultSet rs = stm.executeQuery()) {
           products = new ArrayList<>();
@@ -52,8 +52,8 @@ public class ProductRepo {
   public Optional<Product> getProductById(int storeId, int productId) {
     try(Connection connection = this.pool.getConnection()) {
       try(PreparedStatement stm = connection.prepareStatement(SELECT_BY_ID_QUERY)) {
-        stm.setInt(1, storeId);
-        stm.setInt(2, productId);
+        stm.setInt(1, productId);
+        stm.setInt(2, storeId);
 
         try(ResultSet rs = stm.executeQuery()) {
           if(rs.next()) {
