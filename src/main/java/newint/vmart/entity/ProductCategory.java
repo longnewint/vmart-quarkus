@@ -6,5 +6,8 @@ public record ProductCategory(
   String productName,
   float listPrice,
   float discountPrice,
+  String packageSize,
+  String unitPrice,
+  int unitPriceCalc,
   String thumbnailUrl
 ) {}
