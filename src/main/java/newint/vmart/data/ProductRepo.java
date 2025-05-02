@@ -21,7 +21,7 @@ import java.util.Optional;
 public class ProductRepo {
   @Inject AgroalDataSource pool;
 
-  private static final String SELECT_BY_CATEGORY_QUERY = "SELECT * FROM get_product(?, ?)";
+  private static final String SELECT_BY_CATEGORY_QUERY = "SELECT * FROM get_product_by_category(?, ?)";
   private static final String SELECT_BY_ID_QUERY = "SELECT * FROM get_product_by_id(?, ?)";
 
   public List<ProductCategory> getProductByCategory(int storeId, int categoryId) {
