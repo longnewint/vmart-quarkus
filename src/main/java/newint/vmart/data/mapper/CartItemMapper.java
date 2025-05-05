@@ -12,11 +12,11 @@ public class CartItemMapper implements ResultMapper<CartItemRead> {
       rs.getString(2),
       rs.getString(3),
       rs.getFloat(4),
-      rs.getFloat(6),
+      rs.getFloat(5),
+      rs.getString(6),
       rs.getString(7),
       rs.getString(8),
-      rs.getString(9),
-      rs.getInt(10)
+      rs.getInt(9)
     );
   }
 }
