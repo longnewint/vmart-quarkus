@@ -1,4 +1,8 @@
-#Maven
+# Gradle
+.gradle/
+build/
+
+# Maven
 target/
 pom.xml.tag
 pom.xml.releaseBackup
