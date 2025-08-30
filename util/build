@@ -2,4 +2,4 @@
 
 set -euo pipefail
 
-mvn compile quarkus:build -Dquickly
+gradle build
