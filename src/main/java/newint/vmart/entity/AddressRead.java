@@ -8,6 +8,5 @@ public record AddressRead(
   String addressLine2,
   String city,
   String province,
-  String postalCode,
-  boolean isDefault
+  String postalCode
 ) {}
