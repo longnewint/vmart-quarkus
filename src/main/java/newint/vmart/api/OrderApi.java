@@ -16,7 +16,7 @@ public class OrderApi {
   @Inject OrderRepo repo;
 
   @GET
-  @Path("/current/{userId}")
+  @Path("/{userId}")
   @Produces(MediaType.APPLICATION_JSON)
   public List<CurrentOrderRead> getCurrentOrder(@RestPath int userId) {
     return repo.getCurrentOrder(userId);
