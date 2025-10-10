@@ -49,20 +49,19 @@ public class AddressRepo {
     try(Connection connection = this.pool.getConnection()) {
       try(CallableStatement stm = connection.prepareCall(INSERT_QUERY)) {
         stm.setInt(1, userId);
-        stm.setBoolean(2, false);
 
         String unitNumber = address.unitNumber() == null ? "none" : address.unitNumber();
-        stm.setString(3, unitNumber);
+        stm.setString(2, unitNumber);
 
-        stm.setString(4, address.streetNumber());
-        stm.setString(5, address.addressLine1());
+        stm.setString(3, address.streetNumber());
+        stm.setString(4, address.addressLine1());
 
         String addressLine2 = address.addressLine2() == null ? "none" : address.addressLine2();
-        stm.setString(6, addressLine2);
+        stm.setString(5, addressLine2);
 
-        stm.setString(7, address.city());
-        stm.setString(8, address.province());
-        stm.setString(9, address.postalCode());
+        stm.setString(6, address.city());
+        stm.setString(7, address.province());
+        stm.setString(8, address.postalCode());
 
         return stm.execute();
       }
