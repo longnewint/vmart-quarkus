@@ -14,8 +14,6 @@ public class ProductCategoryMapper implements  ResultMapper<ProductCategory> {
       rs.getFloat(4),
       rs.getFloat(5),
       rs.getString(6),
-      rs.getString(7),
-      rs.getInt(8),
-      rs.getString(9));
+      rs.getString(7));
   }
 }
