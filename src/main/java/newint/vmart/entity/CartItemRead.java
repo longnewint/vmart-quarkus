@@ -5,9 +5,8 @@ public record CartItemRead(
   String brand,
   String productName,
   float listPrice,
-  float discount_price,
-  String package_size,
-  String unit_price,
+  float discountPrice,
+  String packageSize,
   String thumbnailUrl,
   int quantity
 ) {}
