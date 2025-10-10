@@ -15,8 +15,7 @@ public class CartItemMapper implements ResultMapper<CartItemRead> {
       rs.getFloat(5),
       rs.getString(6),
       rs.getString(7),
-      rs.getString(8),
-      rs.getInt(9)
+      rs.getInt(8)
     );
   }
 }
