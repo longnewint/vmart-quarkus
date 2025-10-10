@@ -7,7 +7,6 @@ public record Product(
   float listPrice,
   float discountPrice,
   String packageSize,
-  String unitPrice,
   String url,
   String sku,
   String ingredients,
