@@ -30,15 +30,7 @@ public class PaymentApi {
   @POST
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
-  public Result post(@RestPath int userId, @Valid PaymentWrite payment) {
-    Set<ConstraintViolation<PaymentWrite>> violations = validator.validate(payment);
-
-    if(violations.isEmpty()) {
-      boolean isSuccessful = repo.addPayment(userId, payment);
-
-      return new Result(true, "Operation successful!");
-    }
-    else
-      return new Result(violations);
+  public int post(@RestPath int userId, @Valid PaymentWrite payment) {
+      return repo.addPayment(userId, payment);
   }
 }
