@@ -31,16 +31,8 @@ public class DeliveryApi {
   @POST
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
-  public Result post(@RestPath int userId, @Valid AddressWrite address) {
-    Set<ConstraintViolation<AddressWrite>> violations = validator.validate(address);
-
-    if(violations.isEmpty()) {
-      boolean isSuccessful = repo.addAddress(userId, address);
-
-      return new Result(true, "Operation successful!");
-    }
-    else
-      return new Result(violations);
+  public int post(@RestPath int userId, @Valid AddressWrite address) {
+    return repo.addAddress(userId, address);
   }
 
   @DELETE
