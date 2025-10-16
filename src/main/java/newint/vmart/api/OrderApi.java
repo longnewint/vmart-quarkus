@@ -3,9 +3,8 @@ package newint.vmart.api;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
-import newint.vmart.api.validation.Result;
 import newint.vmart.data.OrderRepo;
-import newint.vmart.entity.CurrentOrderRead;
+import newint.vmart.entity.OrderRead;
 import newint.vmart.entity.OrderWrite;
 import org.jboss.resteasy.reactive.RestPath;
 
@@ -18,8 +17,8 @@ public class OrderApi {
   @GET
   @Path("/{userId}")
   @Produces(MediaType.APPLICATION_JSON)
-  public List<CurrentOrderRead> getCurrentOrder(@RestPath int userId) {
-    return repo.getCurrentOrder(userId);
+  public List<OrderRead> getOrder(@RestPath int userId) {
+    return repo.getOrder(userId);
   }
 
   @POST
