@@ -18,7 +18,7 @@ public class PaymentRepo {
   AgroalDataSource pool;
 
   private static final String SELECT_QUERY = "SELECT * FROM get_payment(?)";
-  private static final String INSERT_QUERY = "CALL add_payment(?, ?, ?, ?, ?, ?, ?)";
+  private static final String INSERT_QUERY = "SELECT add_payment(?, ?, ?, ?, ?, ?)";
 
   public List<PaymentRead> getPayment(int userId) {
     List<PaymentRead> payments = Collections.emptyList();
@@ -42,18 +42,24 @@ public class PaymentRepo {
     }
   }
 
-  public boolean addPayment(int userId, PaymentWrite payment) {
+  public int addPayment(int userId, PaymentWrite payment) {
+    int paymentId = 0;
+
     try(Connection connection = this.pool.getConnection()) {
-      try(CallableStatement stm = connection.prepareCall(INSERT_QUERY)) {
+      try(PreparedStatement stm = connection.prepareStatement(INSERT_QUERY)) {
         stm.setInt(1, userId);
         stm.setInt(2, payment.paymentTypeId());
         stm.setString(3, payment.cardNumber());
         stm.setString(4, payment.expMonth());
         stm.setString(5, payment.expYear());
         stm.setString(6, payment.cvv());
-        stm.setBoolean(7, false);
 
-        return stm.execute();
+        try(ResultSet rs = stm.executeQuery()) {
+          if(rs.next())
+            paymentId = rs.getInt(1);
+
+          return paymentId;
+        }
       }
     } catch (SQLException e) {
       throw new RuntimeException(e);
