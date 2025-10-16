@@ -10,8 +10,7 @@ public class PaymentMapper implements ResultMapper<PaymentRead> {
     return new PaymentRead(
       rs.getInt(1),
       rs.getInt(2),
-      rs.getString(3),
-      rs.getBoolean(4)
+      rs.getString(3)
     );
   }
 }
