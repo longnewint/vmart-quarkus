@@ -1,8 +1,6 @@
 package newint.vmart.entity;
 
-import java.sql.Timestamp;
-
-public record OrderRead(
+public record OrderIdRead(
   int orderId,
   String storeName,
   int shippingMethodId,
