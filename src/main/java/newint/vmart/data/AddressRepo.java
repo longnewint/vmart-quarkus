@@ -20,7 +20,7 @@ public class AddressRepo {
   AgroalDataSource pool;
 
   private static final String SELECT_QUERY = "SELECT * FROM get_address(?)";
-  private static final String INSERT_QUERY = "CALL add_address(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+  private static final String INSERT_QUERY = "SELECT add_address(?, ?, ?, ?, ?, ?, ?, ?)";
   private static final String DELETE_QUERY = "DELETE FROM address WHERE address_id = ?";
 
   public List<AddressRead> getAddress(int userId) {
@@ -45,9 +45,11 @@ public class AddressRepo {
     }
   }
 
-  public boolean addAddress(int userId, AddressWrite address) {
+  public int addAddress(int userId, AddressWrite address) {
+    int addressId = 0;
+
     try(Connection connection = this.pool.getConnection()) {
-      try(CallableStatement stm = connection.prepareCall(INSERT_QUERY)) {
+      try(PreparedStatement stm = connection.prepareStatement(INSERT_QUERY)) {
         stm.setInt(1, userId);
 
         String unitNumber = address.unitNumber() == null ? "none" : address.unitNumber();
@@ -63,7 +65,12 @@ public class AddressRepo {
         stm.setString(7, address.province());
         stm.setString(8, address.postalCode());
 
-        return stm.execute();
+        try(ResultSet rs = stm.executeQuery()) {
+          if(rs.next())
+            addressId = rs.getInt(1);
+
+          return addressId;
+        }
       }
     } catch (SQLException e) {
       throw new RuntimeException(e);
