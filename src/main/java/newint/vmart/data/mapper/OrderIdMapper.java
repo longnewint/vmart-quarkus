@@ -1,17 +1,17 @@
 package newint.vmart.data.mapper;
 
-import newint.vmart.entity.CurrentOrderRead;
+import newint.vmart.entity.OrderIdRead;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class CurrentOrderMapper implements ResultMapper<CurrentOrderRead> {
-  public CurrentOrderRead map(final ResultSet rs) throws SQLException {
-    return new CurrentOrderRead(
+public class OrderIdMapper implements ResultMapper<OrderIdRead> {
+  public OrderIdRead map(final ResultSet rs) throws SQLException {
+    return new OrderIdRead(
       rs.getInt(1),
       rs.getString(2),
       rs.getInt(3),
-      rs.getTimestamp(4),
+      rs.getTimestamp(4).getTime(),
       rs.getFloat(5),
       rs.getInt(6),
       formatAddress(
