@@ -22,21 +22,21 @@ public class ProfileApi {
   @Inject Validator validator;
 
   @GET
-  @Path("/{userId}")
+  @Path("/")
   @Produces(MediaType.APPLICATION_JSON)
-  public Optional<ProfileRead> get(@RestPath int userId) {
-    return repo.getProfile(userId);
+  public Optional<ProfileRead> get() {
+    return repo.getProfile(12321);
   }
 
   @PATCH
-  @Path("/{userId}")
+  @Path("/")
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
-  public Result patch(@RestPath int userId, @Valid ProfileWrite profile) {
+  public Result patch(@Valid ProfileWrite profile) {
     Set<ConstraintViolation<ProfileWrite>> violations = validator.validate(profile);
 
     if(violations.isEmpty()) {
-      boolean isSuccessful = repo.updateProfile(userId, profile);
+      boolean isSuccessful = repo.updateProfile(12321, profile);
 
       return new Result(true, "Operation successful!");
     }
