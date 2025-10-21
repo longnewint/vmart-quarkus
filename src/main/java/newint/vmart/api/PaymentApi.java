@@ -15,7 +15,7 @@ import org.jboss.resteasy.reactive.RestPath;
 import java.util.List;
 import java.util.Set;
 
-@Path("/payment/{userId}")
+@Path("/payment")
 public class PaymentApi {
   @Inject PaymentRepo repo;
 
@@ -23,14 +23,14 @@ public class PaymentApi {
 
   @GET
   @Produces(MediaType.APPLICATION_JSON)
-  public List<PaymentRead> get(@RestPath int userId) {
-    return repo.getPayment(userId);
+  public List<PaymentRead> get() {
+    return repo.getPayment(12321);
   }
 
   @POST
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
-  public int post(@RestPath int userId, @Valid PaymentWrite payment) {
-      return repo.addPayment(userId, payment);
+  public int post(@Valid PaymentWrite payment) {
+      return repo.addPayment(12321, payment);
   }
 }
