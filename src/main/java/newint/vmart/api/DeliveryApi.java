@@ -16,7 +16,7 @@ import org.jboss.resteasy.reactive.RestQuery;
 import java.util.List;
 import java.util.Set;
 
-@Path("/delivery/{userId}")
+@Path("/delivery")
 public class DeliveryApi {
   @Inject AddressRepo repo;
 
@@ -24,20 +24,20 @@ public class DeliveryApi {
 
   @GET
   @Produces(MediaType.APPLICATION_JSON)
-  public List<AddressRead> get(@RestPath int userId) {
-    return repo.getAddress(userId);
+  public List<AddressRead> get() {
+    return repo.getAddress(12321);
   }
 
   @POST
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
-  public int post(@RestPath int userId, @Valid AddressWrite address) {
-    return repo.addAddress(userId, address);
+  public int post(@Valid AddressWrite address) {
+    return repo.addAddress(12321, address);
   }
 
   @DELETE
   @Produces(MediaType.APPLICATION_JSON)
-  public void delete(@RestPath int userId, @RestQuery int addressId) {
-    boolean isSuccessful = repo.deleteAddress(userId, addressId);
+  public void delete(@RestQuery int addressId) {
+    boolean isSuccessful = repo.deleteAddress(12321, addressId);
   }
 }
