@@ -1,6 +1,6 @@
 package newint.vmart.entity;
 
-public record Product(
+public record ProductId(
   int productId,
   String brand,
   String productName,

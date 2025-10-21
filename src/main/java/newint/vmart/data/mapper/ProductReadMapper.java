@@ -1,13 +1,13 @@
 package newint.vmart.data.mapper;
 
-import newint.vmart.entity.ProductCategory;
+import newint.vmart.entity.ProductRead;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class ProductCategoryMapper implements  ResultMapper<ProductCategory> {
-  public ProductCategory map(final ResultSet rs) throws SQLException {
-    return new ProductCategory(
+public class ProductMapper implements  ResultMapper<ProductRead> {
+  public ProductRead map(final ResultSet rs) throws SQLException {
+    return new ProductRead(
       rs.getInt(1),
       rs.getString(2),
       rs.getString(3),
