@@ -2,10 +2,12 @@ package newint.vmart.entity;
 
 public record OrderIdRead(
   int orderId,
-  String storeName,
-  int shippingMethodId,
-  long orderDate,
-  float orderTotal,
-  int orderStatusId,
-  String address
+  String unitNumber,
+  String streetNumber,
+  String addressLine1,
+  String addressLine2,
+  String city,
+  String province,
+  String postalCode,
+  OrderItem[] items
 ) {}
