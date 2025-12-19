@@ -5,7 +5,7 @@ import newint.vmart.entity.ProductIdRead;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class ProductIdMapper implements ResultMapper<ProductIdRead> {
+public class ProductIdReadMapper implements ResultMapper<ProductIdRead> {
   public ProductIdRead map(final ResultSet rs) throws SQLException {
     return new ProductIdRead(
       rs.getInt(1),
