@@ -3,10 +3,10 @@ package newint.vmart.data;
 import io.agroal.api.AgroalDataSource;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
-import newint.vmart.data.mapper.ProductCategoryMapper;
-import newint.vmart.data.mapper.ProductMapper;
-import newint.vmart.entity.Product;
-import newint.vmart.entity.ProductCategory;
+import newint.vmart.data.mapper.ProductReadMapper;
+import newint.vmart.data.mapper.ProductIdReadMapper;
+import newint.vmart.entity.ProductIdRead;
+import newint.vmart.entity.ProductRead;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -24,8 +24,8 @@ public class ProductRepo {
   private static final String SELECT_BY_CATEGORY_QUERY = "SELECT * FROM get_product_by_category(?, ?)";
   private static final String SELECT_BY_ID_QUERY = "SELECT * FROM get_product_by_id(?, ?)";
 
-  public List<ProductCategory> getProductByCategory(int storeId, int categoryId) {
-    List<ProductCategory> products = Collections.emptyList();
+  public List<ProductRead> getProduct(int storeId, int categoryId) {
+    List<ProductRead> products = Collections.emptyList();
 
     try (Connection connection = this.pool.getConnection()) {
       try(PreparedStatement stm = connection.prepareStatement(SELECT_BY_CATEGORY_QUERY)) {
@@ -34,7 +34,7 @@ public class ProductRepo {
 
         try(ResultSet rs = stm.executeQuery()) {
           products = new ArrayList<>();
-          var mapper = new ProductCategoryMapper();
+          var mapper = new ProductReadMapper();
 
           while(rs.next()) {
             products.add(mapper.map(rs));
@@ -49,7 +49,7 @@ public class ProductRepo {
   }
 
 
-  public Optional<Product> getProductById(int storeId, int productId) {
+  public Optional<ProductIdRead> getProductById(int storeId, int productId) {
     try(Connection connection = this.pool.getConnection()) {
       try(PreparedStatement stm = connection.prepareStatement(SELECT_BY_ID_QUERY)) {
         stm.setInt(1, productId);
@@ -57,7 +57,7 @@ public class ProductRepo {
 
         try(ResultSet rs = stm.executeQuery()) {
           if(rs.next()) {
-            ProductMapper mapper = new ProductMapper();
+            ProductIdReadMapper mapper = new ProductIdReadMapper();
             return Optional.ofNullable(mapper.map(rs));
           }
           else
