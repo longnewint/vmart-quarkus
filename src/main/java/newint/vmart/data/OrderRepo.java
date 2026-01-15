@@ -21,6 +21,7 @@ public class OrderRepo {
   private static final String GET_ORDER_QUERY = "SELECT * FROM get_order(?)";
   private static final String GET_ORDER_BY_ID_QUERY = "SELECT * FROM get_order_by_id(?)";
   private static final String INSERT_QUERY = "CALL create_order(?, ?, ?, ?, ?, ?)";
+  private static final String UPDATE_STATUS = "UPDATE vmart_order SET order_status_id = ? WHERE order_id = ?";
 
   public Optional<OrderIdRead> getOrderById(int orderId) {
     try(Connection connection = this.pool.getConnection()) {
@@ -72,6 +73,19 @@ public class OrderRepo {
         stm.setInt(4, order.shippingMethodId());
         stm.setInt(5, order.addressId());
         stm.setInt(6, order.paymentMethodId());
+
+        return stm.execute();
+      }
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  public boolean updateOrderStatus(int status, int orderId) {
+    try(Connection conn = pool.getConnection()) {
+      try(PreparedStatement stm = conn.prepareStatement(UPDATE_STATUS)) {
+        stm.setInt(1, status);
+        stm.setInt(2, orderId);
 
         return stm.execute();
       }
