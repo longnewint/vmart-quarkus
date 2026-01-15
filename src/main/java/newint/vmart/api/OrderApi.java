@@ -6,6 +6,7 @@ import jakarta.ws.rs.core.MediaType;
 import newint.vmart.data.OrderRepo;
 import newint.vmart.entity.OrderIdRead;
 import newint.vmart.entity.OrderRead;
+import newint.vmart.entity.OrderStatusWrite;
 import newint.vmart.entity.OrderWrite;
 import org.jboss.resteasy.reactive.RestPath;
 
@@ -35,5 +36,13 @@ public class OrderApi {
   @Produces(MediaType.APPLICATION_JSON)
   public void post(OrderWrite order) {
     boolean isSuccessful = repo.addOrder(12321, order);
+  }
+
+  @POST
+  @Path("/status")
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  public void post(OrderStatusWrite osw) {
+    boolean isSuccessful = repo.updateOrderStatus(osw.orderStatusId(), osw.orderId());
   }
 }
