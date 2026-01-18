@@ -8,6 +8,7 @@ import newint.vmart.entity.OrderIdRead;
 import newint.vmart.entity.OrderRead;
 import newint.vmart.entity.OrderStatusWrite;
 import newint.vmart.entity.OrderWrite;
+import org.jboss.logging.Logger;
 import org.jboss.resteasy.reactive.RestPath;
 
 import java.util.List;
@@ -16,6 +17,8 @@ import java.util.Optional;
 @Path("/order")
 public class OrderApi {
   @Inject OrderRepo repo;
+
+  private static final Logger LOG = Logger.getLogger(OrderApi.class);
 
   @GET
   @Produces(MediaType.APPLICATION_JSON)
@@ -35,6 +38,7 @@ public class OrderApi {
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
   public void post(OrderWrite order) {
+    LOG.info(order.toString());
     boolean isSuccessful = repo.addOrder(12321, order);
   }
 
