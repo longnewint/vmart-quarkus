@@ -5,5 +5,5 @@ public record OrderWrite(
   int cartId,
   int shippingMethodId,
   int addressId,
-  int paymentMethodId
+  int paymentId
 ) {}
