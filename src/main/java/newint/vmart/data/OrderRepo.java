@@ -72,7 +72,7 @@ public class OrderRepo {
         stm.setInt(3, order.cartId());
         stm.setInt(4, order.shippingMethodId());
         stm.setInt(5, order.addressId());
-        stm.setInt(6, order.paymentMethodId());
+        stm.setInt(6, order.paymentId());
 
         return stm.execute();
       }
